@@ -1,0 +1,221 @@
+****************************************************************************************************************************************************************
+***                                WIDEN YOUR WINDOW TO 160 CHARACTERS.  Use 'enscript -r -fCourier9' to print this document                                 ***
+****************************************************************************************************************************************************************
+
+------------------------------------------------------------------ PETSc Performance Summary: ------------------------------------------------------------------
+
+
+
+      ##########################################################
+      #                                                        #
+      #                       WARNING!!!                       #
+      #                                                        #
+      #   This code was run with -log_view_gpu_time            #
+      #   This provides accurate timing within the GPU kernels #
+      #   but can slow down the entire computation by a        #
+      #   measurable amount. For fastest runs we recommend     #
+      #   not using this option.                               #
+      #                                                        #
+      ##########################################################
+
+
+/global/cfs/projectdirs/m4267/gbisht/rdycore/build-pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5/bin/rdycore on a pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5 named nid001164 with 128 processors, by gbisht Fri Mar  8 18:53:35 2024
+Using Petsc Development GIT revision: v3.20.2-300-gfc2888174f5  GIT Date: 2023-12-13 19:44:14 +0000
+
+                         Max       Max/Min     Avg       Total
+Time (sec):           3.805e+02     1.000   3.805e+02
+Objects:              0.000e+00     0.000   0.000e+00
+Flops:                5.038e+10     1.091   4.830e+10  6.182e+12
+Flops/sec:            1.324e+08     1.091   1.269e+08  1.625e+10
+MPI Msg Count:        5.530e+06     7.998   3.521e+06  4.507e+08
+MPI Msg Len (bytes):  1.846e+10     5.521   4.048e+03  1.825e+12
+MPI Reductions:       2.360e+02     1.000
+
+Flop counting convention: 1 flop = 1 real number operation of type (multiply/divide/add/subtract)
+                            e.g., VecAXPY() for real vectors of length N --> 2N flops
+                            and VecAXPY() for complex vectors of length N --> 8N flops
+
+Summary of Stages:   ----- Time ------  ----- Flop ------  --- Messages ---  -- Message Lengths --  -- Reductions --
+                        Avg     %Total     Avg     %Total    Count   %Total     Avg         %Total    Count   %Total
+ 0:      Main Stage: 2.7171e+01   7.1%  1.7556e+07   0.0%  8.244e+04   0.0%  2.779e+04        0.1%  2.180e+02  92.4%
+ 2: RDyAdvance solve: 3.4431e+02  90.5%  6.1823e+12 100.0%  4.507e+08 100.0%  4.043e+03       99.9%  0.000e+00   0.0%
+
+------------------------------------------------------------------------------------------------------------------------
+See the 'Profiling' chapter of the users' manual for details on interpreting output.
+Phase summary info:
+   Count: number of times phase was executed
+   Time and Flop: Max - maximum over all processors
+                  Ratio - ratio of maximum to minimum over all processors
+   Mess: number of messages sent
+   AvgLen: average message length (bytes)
+   Reduct: number of global reductions
+   Global: entire computation
+   Stage: stages of a computation. Set stages with PetscLogStagePush() and PetscLogStagePop().
+      %T - percent time in this phase         %F - percent flop in this phase
+      %M - percent messages in this phase     %L - percent message lengths in this phase
+      %R - percent reductions in this phase
+   Total Mflop/s: 10e-6 * (sum of flop over all processors)/(max time over all processors)
+   GPU Mflop/s: 10e-6 * (sum of flop on GPU over all processors)/(max GPU time over all processors)
+   CpuToGpu Count: total number of CPU to GPU copies per processor
+   CpuToGpu Size (Mbytes): 10e-6 * (total size of CPU to GPU copies per processor)
+   GpuToCpu Count: total number of GPU to CPU copies per processor
+   GpuToCpu Size (Mbytes): 10e-6 * (total size of GPU to CPU copies per processor)
+   GPU %F: percent flops on GPU in this event
+------------------------------------------------------------------------------------------------------------------------
+Event                Count      Time (sec)     Flop                              --- Global ---  --- Stage ----  Total   GPU    - CpuToGpu -   - GpuToCpu - GPU
+                   Max Ratio  Max     Ratio   Max  Ratio  Mess   AvgLen  Reduct  %T %F %M %L %R  %T %F %M %L %R Mflop/s Mflop/s Count   Size   Count   Size  %F
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--- Event Stage 0: Main Stage
+
+PetscBarrier           8 1.0 3.1351e+00 929.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   6  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+BuildTwoSided         30 1.0 9.2012e-01 10.1 0.00e+00 0.0 1.8e+04 8.2e+00 3.0e+01  0  0  0  0 13   3  0 21  0 14     0       0      0 0.00e+00    0 0.00e+00  0
+BuildTwoSidedF         3 1.0 4.2276e-02 18.5 0.00e+00 0.0 2.8e+04 2.0e+03 3.0e+00  0  0  0  0  1   0  0 34  2  1     0       0      0 0.00e+00    0 0.00e+00  0
+VecCopy                1 1.0 2.0952e-03 7482.9 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+VecSet                 8 1.0 1.8595e-03 6.4 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+VecAssemblyBegin       3 1.0 4.2953e-02 14.8 0.00e+00 0.0 2.8e+04 2.0e+03 3.0e+00  0  0  0  0  1   0  0 34  2  1     0       0      0 0.00e+00    0 0.00e+00  0
+VecAssemblyEnd         3 1.0 4.0876e-02 41.7 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+VecLoad                2 1.0 3.5690e-01 1.0 0.00e+00 0.0 2.5e+02 2.0e+00 7.0e+00  0  0  0  0  3   1  0  0  0  3     0       0      0 0.00e+00    0 0.00e+00  0
+VecCUDACopyTo          2 1.0 3.2452e-05 1.4 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      2 1.10e+00    0 0.00e+00  0
+VecCUDACopyFrom       11 1.0 3.7966e-04 1.1 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00   11 6.26e+00  0
+DMPlexCrFromFile       1 1.0 5.0575e+00 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 6.0e+00  1  0  0  0  3  19  0  0  0  3     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexCrFromOpts       1 1.0 5.0576e+00 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 6.0e+00  1  0  0  0  3  19  0  0  0  3     0       0      0 0.00e+00    0 0.00e+00  0
+Mesh Partition         2 1.0 4.9293e+00 1.0 0.00e+00 0.0 8.1e+03 2.3e+04 2.5e+01  1  0  0  0 11  18  0 10  8 11     0       0      0 0.00e+00    0 0.00e+00  0
+Mesh Migration         2 1.0 8.1768e-01 1.0 0.00e+00 0.0 2.1e+04 3.5e+04 6.7e+01  0  0  0  0 28   3  0 26 32 31     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexPartSelf         1 1.0 9.9925e-01 141256.9 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexPartLblInv       2 1.0 1.0358e+00 39.0 0.00e+00 0.0 0.0e+00 0.0e+00 6.0e+00  0  0  0  0  3   4  0  0  2  3     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexPartLblSF        2 1.0 4.4928e-02 1.3 0.00e+00 0.0 1.6e+03 2.4e+04 2.0e+00  0  0  0  0  1   0  0  2  2  1     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexPartStrtSF       2 1.0 7.3605e-02 1.1 0.00e+00 0.0 7.8e+02 9.4e+04 0.0e+00  0  0  0  0  0   0  0  1  3  0     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexPointSF          2 1.0 2.5509e+00 1.0 0.00e+00 0.0 9.1e+02 2.0e+05 0.0e+00  1  0  0  0  0   9  0  1  8  0     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexInterp          15 1.0 4.2442e+00 1.5 0.00e+00 0.0 0.0e+00 0.0e+00 1.0e+00  1  0  0  0  0  11  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexDistribute       1 1.0 8.2301e+00 1.0 0.00e+00 0.0 3.8e+03 2.8e+05 4.2e+01  2  0  0  0 18  30  0  5 46 19     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexDistCones        2 1.0 1.1099e-01 1.1 0.00e+00 0.0 4.7e+03 6.2e+04 4.0e+00  0  0  0  0  2   0  0  6 13  2     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexDistLabels       2 1.0 3.0924e-01 1.0 0.00e+00 0.0 7.8e+03 3.1e+04 3.4e+01  0  0  0  0 14   1  0  9 11 16     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexDistOvrlp        1 1.0 7.5543e-02 1.0 0.00e+00 0.0 2.6e+04 1.7e+03 5.6e+01  0  0  0  0 24   0  0 32  2 26     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexDistField        3 1.0 6.5844e-02 1.1 0.00e+00 0.0 6.3e+03 2.7e+04 8.0e+00  0  0  0  0  3   0  0  8  7  4     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexGToNBegin        1 1.0 4.0876e-01 2.1 0.00e+00 0.0 3.8e+02 3.7e+05 1.0e+00  0  0  0  0  0   1  0  0  6  0     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexGToNEnd          1 1.0 2.5556e-01 21.4 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   1  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexNToGBegin        2 1.0 2.8955e-01 2.6 0.00e+00 0.0 5.1e+02 3.4e+05 1.0e+00  0  0  0  0  0   0  0  1  8  0     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexNToGEnd          2 1.0 1.7664e-01 67.4 1.43e+05 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   1 99  0  0  0    99       0      0 0.00e+00    0 0.00e+00  0
+DMPlexStratify        20 1.0 3.1269e+00 14.2 0.00e+00 0.0 0.0e+00 0.0e+00 4.0e+00  1  0  0  0  2  11  0  0  0  2     0       0      0 0.00e+00    0 0.00e+00  0
+DMPlexSymmetrize      20 1.0 3.9525e-01 119.6 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+SFSetGraph            39 1.0 4.3053e-01 37.8 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+SFSetUp               27 1.0 1.9009e+00 2.1 0.00e+00 0.0 1.7e+04 3.0e+04 2.7e+01  0  0  0  0 11   3  0 20 22 12     0       0      0 0.00e+00    0 0.00e+00  0
+SFBcastBegin          89 1.0 2.6895e-01 15.9 0.00e+00 0.0 3.3e+04 3.4e+04 0.0e+00  0  0  0  0  0   0  0 40 49  0     0       0      1 1.03e-02    4 8.24e-02  0
+SFBcastEnd            89 1.0 3.9318e+00 61.6 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0  14  0  0  0  0     0       0      5 8.25e-02    0 0.00e+00  0
+SFReduceBegin         13 1.0 9.4145e-02 454.0 0.00e+00 0.0 3.3e+03 1.8e+05 0.0e+00  0  0  0  0  0   0  0  4 25  0     0       0      0 0.00e+00    0 0.00e+00  0
+SFReduceEnd           13 1.0 2.5159e+00 3.6 1.43e+05 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   3 99  0  0  0     7       0      0 0.00e+00    0 0.00e+00  0
+SFFetchOpBegin         1 1.0 2.4307e-05 12.7 0.00e+00 0.0 3.3e+02 6.7e+02 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+SFFetchOpEnd           1 1.0 8.1442e-04 28.3 0.00e+00 0.0 3.3e+02 6.7e+02 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+SFCreateEmbed          6 1.0 4.7867e-01 1.3 0.00e+00 0.0 7.6e+02 7.1e+04 0.0e+00  0  0  0  0  0   1  0  1  2  0     0       0      0 0.00e+00    0 0.00e+00  0
+SFDistSection         15 1.0 1.4730e+00 1.2 0.00e+00 0.0 1.1e+04 6.1e+04 1.8e+01  0  0  0  0  8   5  0 14 30  8     0       0      0 0.00e+00    0 0.00e+00  0
+SFSectionSF           12 1.0 5.6462e-01 8.7 0.00e+00 0.0 7.6e+03 3.1e+04 1.2e+01  0  0  0  0  5   0  0  9 10  6     0       0      0 0.00e+00    0 0.00e+00  0
+SFPack               103 1.0 2.2230e-01 530.1 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      1 1.03e-02    0 0.00e+00  0
+SFUnpack             104 1.0 2.5453e+00 21741.5 1.43e+05 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0 99  0  0  0     7       0      1 1.33e-04    0 0.00e+00  0
+MatAssemblyBegin      22 1.0 2.6730e-06 1.6 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+MatAssemblyEnd        22 1.0 2.2414e-05 1.4 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+MatSetPreallCOO       16 1.0 6.6638e-05 1.3 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+MatSetValuesCOO       16 1.0 3.0147e-05 1.3 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DualSpaceSetUp         4 1.0 3.6888e-03 1.1 5.40e+01 1.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     2       0      0 0.00e+00    0 0.00e+00  0
+FESetUp                4 1.0 1.7659e-01 23.8 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+cuBLAS Init            1 1.0 2.1246e+02 93.1 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0  33  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DCtxCreate             2 1.0 3.4045e-05 1.4 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DCtxDestroy            2 1.0 4.0479e-05 1.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DCtxSetUp              2 1.0 8.9554e-05 1.3 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DCtxSetDevice          2 1.0 1.4148e-04 1.5 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+DCtxSync              23 1.1 8.2211e-04 6.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+
+--- Event Stage 2: RDyAdvance solve
+
+VecCopy          1036800 1.0 2.5087e+01 1.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  6  0  0  0  0   7  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+VecSet            345600 1.0 3.9313e+00 1.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+VecAYPX           345600 1.0 9.8320e+00 1.2 4.93e+10 1.1 0.0e+00 0.0e+00 0.0e+00  2 98  0  0  0   3 98  0  0  0 617215   1819876      0 0.00e+00    0 0.00e+00  100
+VecCUDACopyTo          8 1.0 5.9374e-05 1.6 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0       0      8 4.39e+00    0 0.00e+00  0
+SFBcastBegin      345600 1.0 2.5718e+01 2.1 0.00e+00 0.0 2.3e+08 4.0e+03 0.0e+00  4  0 50 50  0   5  0 50 50  0     0       0      0 0.00e+00 691200 1.42e+04  0
+SFBcastEnd        345600 1.0 2.3866e+02 15.6 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 32  0  0  0  0  36  0  0  0  0     0       0   691200 1.42e+04    0 0.00e+00  0
+SFReduceBegin     345600 1.0 2.2208e+01 2.4 0.00e+00 0.0 2.3e+08 4.0e+03 0.0e+00  4  0 50 50  0   4  0 50 50  0     0       0      0 0.00e+00 691200 1.42e+04  0
+SFReduceEnd       345600 1.0 2.4216e+02 38.7 1.15e+09 5.5 0.0e+00 0.0e+00 0.0e+00 32  2  0  0  0  36  2  0  0  0   470       0   691200 1.42e+04    0 0.00e+00  100
+SFPack            691200 1.0 7.7050e+00 2.4 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   2  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+SFUnpack          691200 1.0 5.9240e+00 2.9 1.15e+09 5.5 0.0e+00 0.0e+00 0.0e+00  1  2  0  0  0   1  2  0  0  0 19225       0      0 0.00e+00    0 0.00e+00  100
+DCtxSync         1728010 1.0 4.3971e+00 1.1 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+TSStep            345600 1.0 3.5043e+02 2.5 5.04e+10 1.1 4.5e+08 4.0e+03 0.0e+00 90 100 100 100  0 100 100 100 100  0 17642   233516   1382408 2.85e+04 1382400 2.85e+04  100
+TSFunctionEval    345600 1.0 3.3513e+02 2.7 1.15e+09 5.5 4.5e+08 4.0e+03 0.0e+00 86  2 100 100  0  95  2 100 100  0   340    5504   1382408 2.85e+04 1382400 2.85e+04  100
+CeedOperatorApp   691200 1.0 2.1878e+01 1.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  5  0  0  0  0   6  0  0  0  0     0       0      0 0.00e+00    0 0.00e+00  0
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Object Type          Creations   Destructions. Reports information only for process 0.
+
+--- Event Stage 0: Main Stage
+
+           Container    46             46
+              Vector    45             44
+              Viewer     4              4
+    Distributed Mesh    53             53
+            DM Label   138            138
+          Quadrature    94             94
+           Index Set   914            914
+   IS L to G Mapping   148            148
+             Section   223            223
+   Star Forest Graph   140            140
+     Discrete System    80             80
+           Weak Form    80             80
+    GraphPartitioner    21             21
+              Matrix    90             90
+        Linear Space     6              6
+          Dual Space    26             26
+            FE Space     4              4
+  PetscDeviceContext     2              0
+             TSAdapt     1              1
+                  TS     1              1
+                DMTS     1              1
+                SNES     1              1
+              DMSNES     3              3
+      SNESLineSearch     1              1
+       Krylov Solver     1              1
+      Preconditioner     1              1
+              Viewer     1              0
+
+--- Event Stage 1: PCMPI
+
+
+--- Event Stage 2: RDyAdvance solve
+
+              Vector 345601          345600
+========================================================================================================================
+Average time to get PetscTime(): 3.01e-08
+Average time for MPI_Barrier(): 2.42248e-05
+Average time for zero size MPI_Send(): 3.8321e-06
+#PETSc Option Table entries:
+-ceed /gpu/cuda # (source: command line)
+-dist_dm_distribute_save_sf true # (source: code)
+-dm_plex_filename Turning_30m_with_z.updated.exo # (source: code)
+-dm_vec_type cuda # (source: command line)
+-log_view # (source: command line)
+-log_view_gpu_time # (source: command line)
+-rain Houston1km.Rain.bin # (source: command line)
+-ts_monitor # (source: command line)
+-use_gpu_aware_mpi 0 # (source: command line)
+#End of PETSc Option Table entries
+Compiled without FORTRAN kernels
+Compiled with full precision matrices (default)
+sizeof(short) 2 sizeof(int) 4 sizeof(long) 8 sizeof(void*) 8 sizeof(PetscScalar) 8 sizeof(PetscInt) 4
+Configure options: --with-cc=cc --with-cxx=CC --with-fc=ftn --CFLAGS=" -g " --CXXFLAGS=" -g " --CUDAFLAGS=" -g -Xcompiler -rdynamic " --with-fortran-bindings=1 --COPTFLAGS="   -O" --CXXOPTFLAGS=" -O" --FOPTFLAGS="   -O" --with-mpiexec="srun -G4" --with-batch=0 --download-kokkos --download-kokkos-kernels --with-kokkos-kernels-tpl=0 --with-make-np=8 --with-64-bit-indices=0 --with-netcdf-dir=/opt/cray/pe/netcdf-hdf5parallel/4.9.0.3/gnu/9.1 --with-pnetcdf-dir=/opt/cray/pe/parallel-netcdf/1.12.3.3/gnu/9.1 --with-hdf5-dir=/opt/cray/pe/hdf5-parallel/1.12.2.3/gnu/9.1 --with-cuda-dir=/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/cuda/11.7 --with-cuda-arch=80 --download-parmetis --download-metis --download-zlib --download-scalapack --download-sowing --download-triangle --download-exodusii --download-libceed --download-cgns-commit=HEAD --with-debugging=0 PETSC_ARCH=pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5
+-----------------------------------------
+Libraries compiled on 2024-02-16 23:47:23 on login13 
+Machine characteristics: Linux-5.14.21-150400.24.81_12.0.87-cray_shasta_c-x86_64-with-glibc2.31
+Using PETSc directory: /global/cfs/projectdirs/m4267/petsc/petsc_main
+Using PETSc arch: pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5
+-----------------------------------------
+
+Using C compiler: cc -g -fPIC -O  
+Using Fortran compiler: ftn  -fPIC -Wall -ffree-line-length-none -ffree-line-length-0 -Wno-lto-type-mismatch -Wno-unused-dummy-argument -O    
+-----------------------------------------
+
+Using include paths: -I/global/cfs/projectdirs/m4267/petsc/petsc_main/include -I/global/cfs/projectdirs/m4267/petsc/petsc_main/pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5/include -I/opt/cray/pe/netcdf-hdf5parallel/4.9.0.3/gnu/9.1/include -I/opt/cray/pe/parallel-netcdf/1.12.3.3/gnu/9.1/include -I/opt/cray/pe/hdf5-parallel/1.12.2.3/gnu/9.1/include -I/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/cuda/11.7/include -I/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/math_libs/11.7/include
+-----------------------------------------
+
+Using C linker: cc
+Using Fortran linker: ftn
+Using libraries: -Wl,-rpath,/global/cfs/projectdirs/m4267/petsc/petsc_main/pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5/lib -L/global/cfs/projectdirs/m4267/petsc/petsc_main/pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5/lib -lpetsc -Wl,-rpath,/global/cfs/projectdirs/m4267/petsc/petsc_main/pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5/lib -L/global/cfs/projectdirs/m4267/petsc/petsc_main/pm-gpu-opt-32bit-gcc-11-2-0-fc2888174f5/lib -Wl,-rpath,/opt/cray/pe/netcdf-hdf5parallel/4.9.0.3/gnu/9.1/lib -L/opt/cray/pe/netcdf-hdf5parallel/4.9.0.3/gnu/9.1/lib -Wl,-rpath,/opt/cray/pe/parallel-netcdf/1.12.3.3/gnu/9.1/lib -L/opt/cray/pe/parallel-netcdf/1.12.3.3/gnu/9.1/lib -Wl,-rpath,/opt/cray/pe/hdf5-parallel/1.12.2.3/gnu/9.1/lib -L/opt/cray/pe/hdf5-parallel/1.12.2.3/gnu/9.1/lib -Wl,-rpath,/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/cuda/11.7/lib64 -L/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/cuda/11.7/lib64 -L/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/cuda/11.7/lib64/stubs -lscalapack -lkokkoskernels -lkokkoscontainers -lkokkoscore -lkokkossimd -lparmetis -lmetis -lexoIIv2for32 -lexodus -lnetcdf -lpnetcdf -lhdf5_hl -lhdf5 -ltriangle -lz -lceed -lcudart -lnvToolsExt -lcufft -lcublas -lcusparse -lcusolver -lcurand -lcuda -lX11 -lstdc++ -lquadmath
+-----------------------------------------
+
